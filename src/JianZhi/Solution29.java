@@ -6,7 +6,7 @@ public class Solution29 {
             return new int[0];
         }
 
-        int rows = matrix.length, columns = matrix.length;
+        int rows = matrix.length, columns = matrix[0].length;
         boolean[][] visited = new boolean[rows][columns];
 
         int total = rows * columns;
@@ -22,7 +22,7 @@ public class Solution29 {
             int nextRow = row + directions[directionIndex][0];
             int nextCol = column + directions[directionIndex][1];
 
-            if(nextRow < 0 || nextRow > rows || nextCol < 0 || nextCol > columns || visited[nextRow][nextCol] == true){
+            if(nextRow < 0 || nextRow >= rows || nextCol < 0 || nextCol >= columns || visited[nextRow][nextCol]){
                 directionIndex = (directionIndex + 1) % 4;
             }
             row += directions[directionIndex][0];
