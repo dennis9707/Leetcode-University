@@ -2,7 +2,13 @@ package Algorithm;
 
 public class HeapSort {
     public static void main(String[] args) {
+
         int arr[] = {4,6,8,5,9};
+        heapSort(arr);
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
     }
     public static void heapSort(int arr[]){
         System.out.println("Heap Sort");
@@ -35,10 +41,12 @@ public class HeapSort {
 //            if the value of the left child node is less than right child node
                 k++; // k now points to the right node
             }
-            if(arr[k] > temp){ //if the child node is larger then the parent node, swap
+            // if the child node is larger then the parent node, swap
+            if(arr[k] > temp){ 
                 arr[i] = arr[k];
                 i = k;
             }else{
+//                do not need to change if the heap structure is not being modified
                 break;
             }
         }
@@ -50,12 +58,12 @@ public class HeapSort {
      *  an index in arr[]. n is size of heap
      * @param arr target array
      * @param n size of the heap
-     * @param i index in the arr
+     * @param index index in the arr
      */
-    public static void adjustHeapRecuesion(int arr[], int n, int i){
-        int largest = i; // Initialize largest as root
-        int l = 2*i + 1; // left = 2*i + 1
-        int r = 2*i + 2; // right = 2*i + 2
+    public static void adjustHeapRecuesion(int arr[], int n, int index){
+        int largest = index; // Initialize largest as root
+        int l = 2*index + 1; // left = 2*i + 1
+        int r = 2*index + 2; // right = 2*i + 2
 
         // If left child is larger than root
         if (l < n && arr[l] > arr[largest])
@@ -66,12 +74,11 @@ public class HeapSort {
             largest = r;
 
         // If largest is not root
-        if (largest != i)
+        if (largest != index)
         {
-            int swap = arr[i];
-            arr[i] = arr[largest];
+            int swap = arr[index];
+            arr[index] = arr[largest];
             arr[largest] = swap;
-
             // Recursively heapify the affected sub-tree
             adjustHeapRecuesion(arr, n, largest);
         }
